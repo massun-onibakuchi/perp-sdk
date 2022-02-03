@@ -1,0 +1,25 @@
+node_modules
+
+.idea
+
+.env
+
+TODO
+
+tmp
+
+.DS_Store
+
+docker
+
+build
+
+src/*.js
+
+coverage
+coverage.json
+typechain-types/factories
+
+#Hardhat files
+cache
+artifacts
