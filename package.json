@@ -23,7 +23,7 @@
     "pretty-quick": "^3.0.2",
     "ts-node": "^10.4.0",
     "typechain": "^7.0.0",
-    "typescript": "^3.6.3"
+    "typescript": "^4.5.5"
   },
   "author": "Perpetual",
   "description": "Perpetual SDK",
