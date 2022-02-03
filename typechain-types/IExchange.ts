@@ -201,7 +201,8 @@ export type AccountBalanceChangedEvent = TypedEvent<
   { accountBalance: string }
 >;
 
-export type AccountBalanceChangedEventFilter = TypedEventFilter<AccountBalanceChangedEvent>;
+export type AccountBalanceChangedEventFilter =
+  TypedEventFilter<AccountBalanceChangedEvent>;
 
 export type FundingUpdatedEvent = TypedEvent<
   [string, BigNumber, BigNumber],
@@ -215,7 +216,8 @@ export type MaxTickCrossedWithinBlockChangedEvent = TypedEvent<
   { baseToken: string; maxTickCrossedWithinBlock: number }
 >;
 
-export type MaxTickCrossedWithinBlockChangedEventFilter = TypedEventFilter<MaxTickCrossedWithinBlockChangedEvent>;
+export type MaxTickCrossedWithinBlockChangedEventFilter =
+  TypedEventFilter<MaxTickCrossedWithinBlockChangedEvent>;
 
 export interface IExchange extends BaseContract {
   contractName: "IExchange";
