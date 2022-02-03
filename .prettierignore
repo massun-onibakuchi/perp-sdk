@@ -1,5 +1,7 @@
 node_modules
 artifacts
+build
 cache
 coverage*
 gasReporterOutput.json
+typechain-types
