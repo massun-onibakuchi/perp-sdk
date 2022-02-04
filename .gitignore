@@ -29,6 +29,3 @@ hardhat.d.ts
 #Hardhat files
 cache
 artifacts
-
-# graph codegen
-src/subgraph/generated/
