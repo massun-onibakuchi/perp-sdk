@@ -2,6 +2,8 @@ node_modules
 
 .idea
 
+yarn-error.log
+
 .env
 
 TODO
@@ -12,14 +14,19 @@ tmp
 
 docker
 
-build
+# dist
+build/
 
-src/*.js
-
+# coverage
 coverage
 coverage.json
+
+# typechain/factories
 typechain-types/factories
 
 #Hardhat files
 cache
 artifacts
+
+# graph codegen
+src/subgraph/generated/

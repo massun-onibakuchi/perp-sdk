@@ -8,12 +8,19 @@
     "test": "jest",
     "prepare": "npm run build",
     "format": "prettier --write '**/*.ts'",
-    "typegen": "typechain --target ethers-v5 --outDir ./src/abi/types \"./src/abi/*.json\""
+    "typegen": "typechain --target ethers-v5 --outDir ./src/abi/types \"./src/abi/*.json\"",
+    "subgraph:generate": "graphql-codegen --config src/subgraph/codegen.yml -r dotenv/config"
   },
   "dependencies": {
-    "ethers": "^5.5.4"
+    "ethers": "^5.5.4",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.5.0",
+    "@graphql-codegen/typescript": "^2.4.3",
+    "@graphql-codegen/typescript-graphql-request": "^4.3.4",
+    "@graphql-codegen/typescript-operations": "^2.2.4",
     "@typechain/ethers-v5": "^9.0.0",
     "@typechain/hardhat": "^4.0.0",
     "@types/dotenv": "6.1.1",

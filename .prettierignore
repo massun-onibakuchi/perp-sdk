@@ -5,3 +5,4 @@ cache
 coverage*
 gasReporterOutput.json
 typechain-types
+**/generated/
