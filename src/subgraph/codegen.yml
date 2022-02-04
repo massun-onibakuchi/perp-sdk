@@ -1,0 +1,18 @@
+overwrite: true
+generates:
+    src/subgraph/generated/perp-optimism-subgraph-types.ts:
+        schema: ${PERPETUAL_PROTOCOL_SUBGRAPH_URL:https://api.thegraph.com/subgraphs/name/perpetual-protocol/perpetual-v2-optimism}
+        documents: 'src/subgraph/graphql/**/*.graphql'
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-graphql-request
+        config:
+            scalars:
+                BigInt: string
+                Bytes: string
+                BigDecimal: string
+    src/subgraph/generated/perp-optimism-subgraph-schema.graphql:
+        schema: ${PERPETUAL_PROTOCOL_SUBGRAPH_URL:https://api.thegraph.com/subgraphs/name/perpetual-protocol/perpetual-v2-optimism}
+        plugins:
+            - schema-ast

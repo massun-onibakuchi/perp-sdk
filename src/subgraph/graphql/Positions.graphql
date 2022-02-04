@@ -1,0 +1,40 @@
+query Position($id: ID!, $block: Block_height) {
+  position(id: $id, block: $block) {
+    ...SubgraphPosition
+  }
+}
+
+query Positions(
+  $skip: Int
+  $first: Int
+  $orderBy: Position_orderBy
+  $orderDirection: OrderDirection
+  $where: Position_filter
+  $block: Block_height
+) {
+  positions(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphPosition
+  }
+}
+
+fragment SubgraphPosition on Position {
+  id
+  trader
+  baseToken
+  positionSize
+  openNotional
+  realizedPnl
+  entryPrice
+  fundingPayment
+  tradingFee
+  tradingVolume
+  liquidationFee
+  blockNumber
+  timestamp
+  traderRef {
+    id
+  }
+  marketRef {
+    id
+  }
+}

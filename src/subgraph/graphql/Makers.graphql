@@ -1,0 +1,29 @@
+query Maker($id: ID!, $block: Block_height) {
+  maker(id: $id, block: $block) {
+    ...SubgraphMaker
+  }
+}
+
+query Makers(
+  $skip: Int
+  $first: Int
+  $orderBy: Maker_orderBy
+  $orderDirection: OrderDirection
+  $where: Maker_filter
+  $block: Block_height
+) {
+  makers(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+    ...SubgraphMaker
+  }
+}
+
+fragment SubgraphMaker on Maker {
+  id
+  collectedFee
+  blockNumber
+  timestamp
+  openOrders {
+    baseToken
+    id
+  }
+}

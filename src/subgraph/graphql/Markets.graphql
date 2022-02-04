@@ -1,0 +1,47 @@
+query Market($id: ID!, $block: Block_height) {
+  market(id: $id, block: $block) {
+    ...SubgraphMarket
+  }
+}
+
+query Markets(
+  $skip: Int
+  $first: Int
+  $orderBy: Market_orderBy
+  $orderDirection: OrderDirection
+  $where: Market_filter
+  $block: Block_height
+) {
+  markets(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphMarket
+  }
+}
+
+fragment SubgraphMarket on Market {
+  id
+  baseToken
+  quoteToken
+  pool
+  feeRatio
+  tradingVolume
+  tradingFee
+  baseAmount
+  quoteAmount
+  blockNumber
+  timestamp
+  blockNumberAdded
+  timestampAdded
+  positions(first: 50) {
+    id
+  }
+  openOrders(first: 100) {
+    id
+  }
+}

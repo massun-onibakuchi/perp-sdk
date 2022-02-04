@@ -1,0 +1,35 @@
+query Trader($id: ID!, $block: Block_height) {
+  trader(id: $id, block: $block) {
+    ...SubgraphTrader
+  }
+}
+
+fragment SubgraphTrader on Trader {
+  collateral
+  tradingVolume
+  realizedPnl
+  fundingPayment
+  tradingFee
+  liquidationFee
+  makerFee
+  badDebt
+  totalPnl
+  blockNumber
+  timestamp
+  positions {
+    baseToken
+    positionSize
+    openNotional
+    entryPrice
+    realizedPnl
+    fundingPayment
+    tradingFee
+    liquidationFee
+  }
+  dayData {
+    id
+    tradingVolume
+    fee
+    realizedPnl
+  }
+}

@@ -1,0 +1,46 @@
+query OpenOrder($id: ID!, $block: Block_height) {
+  openOrder(id: $id, block: $block) {
+    ...SubgraphOpenOrder
+  }
+}
+
+query OpenOrders(
+  $skip: Int
+  $first: Int
+  $orderBy: OpenOrder_orderBy
+  $orderDirection: OrderDirection
+  $where: OpenOrder_filter
+  $block: Block_height
+) {
+  openOrders(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
+    ...SubgraphOpenOrder
+  }
+}
+
+fragment SubgraphOpenOrder on OpenOrder {
+  id
+  maker
+  baseToken
+  lowerTick
+  upperTick
+  baseAmount
+  quoteAmount
+  liquidity
+  collectedFee
+  collectedFeeInThisLifecycle
+  blockNumber
+  timestamp
+  makerRef {
+    id
+  }
+  marketRef {
+    id
+  }
+}
