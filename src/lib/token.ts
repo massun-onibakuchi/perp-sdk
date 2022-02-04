@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
-import { IERC20 } from '../../typechain-types'
-import { Base } from '../base'
+import { IERC20 } from '../abi/types'
+import { Base } from './base'
 import { ChainId } from '../constants'
 import { PerpSDKConfig, TokenType } from '../types'
 

@@ -1,6 +1,6 @@
 import { BigNumberish, ethers, Signer } from 'ethers'
-import { Base } from '../base'
-import type { IVault } from '../../typechain-types'
+import { Base } from '../lib/base'
+import type { IVault } from '../abi/types'
 import { PerpSDKConfig } from '../types'
 
 export class Vault extends Base {

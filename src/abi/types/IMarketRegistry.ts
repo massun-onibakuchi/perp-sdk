@@ -157,14 +157,16 @@ export type InsuranceFundFeeRatioChangedEvent = TypedEvent<
   { feeRatio: number }
 >;
 
-export type InsuranceFundFeeRatioChangedEventFilter = TypedEventFilter<InsuranceFundFeeRatioChangedEvent>;
+export type InsuranceFundFeeRatioChangedEventFilter =
+  TypedEventFilter<InsuranceFundFeeRatioChangedEvent>;
 
 export type MaxOrdersPerMarketChangedEvent = TypedEvent<
   [number],
   { maxOrdersPerMarket: number }
 >;
 
-export type MaxOrdersPerMarketChangedEventFilter = TypedEventFilter<MaxOrdersPerMarketChangedEvent>;
+export type MaxOrdersPerMarketChangedEventFilter =
+  TypedEventFilter<MaxOrdersPerMarketChangedEvent>;
 
 export type PoolAddedEvent = TypedEvent<
   [string, number, string],

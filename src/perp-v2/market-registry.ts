@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
-import { Base } from '../base'
-import type { IMarketRegistry } from '../../typechain-types'
+import { Base } from '../lib/base'
+import type { IMarketRegistry } from '../abi/types'
 import { PerpSDKConfig } from '../types'
 
 export class MarketRegistry extends Base {

@@ -1,7 +1,7 @@
 import { BigNumberish, BytesLike, ethers } from 'ethers'
 import { PerpSDKConfig } from '../types'
-import { Base } from '../base'
-import type { IOrderBook } from '../../typechain-types'
+import { Base } from '../lib/base'
+import type { IOrderBook } from '../abi/types'
 
 export class OrderBook extends Base {
   contract: IOrderBook

@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import { PerpSDKConfig } from '../types'
-import { Base } from '../base'
-import type { IAccountBalance } from '../../typechain-types'
+import { Base } from '../lib/base'
+import type { IAccountBalance } from '../abi/types'
 
 export class AccountBalance extends Base {
   contract: IAccountBalance

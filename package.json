@@ -1,15 +1,18 @@
 {
-  "name": "perpetual",
-  "version": "5.0.1",
+  "name": "perp-v2-sdk",
+  "version": "1.0.1",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "prepare": "npm run build",
-    "format": "prettier --write '**/*.ts'",
-    "typegen": "typechain --target ethers-v5 --outDir ./src/abi/types \"./src/abi/*.json\"",
-    "subgraph:generate": "graphql-codegen --config src/subgraph/codegen.yml -r dotenv/config"
+    "format": "yarn format:ts && yarn format:graphql",
+    "format:ts": "prettier --write '**/*.ts'",
+    "format:graphql": "prettier --write '**/*.graphql'",
+    "typechain": "hardhat typechain",
+    "gen:type": "typechain --target ethers-v5",
+    "gen:subgraph": "graphql-codegen --config src/subgraph/codegen.yml -r dotenv/config"
   },
   "dependencies": {
     "ethers": "^5.5.4",
@@ -35,8 +38,8 @@
     "typechain": "^7.0.0",
     "typescript": "^4.5.5"
   },
-  "author": "Perpetual",
-  "description": "Perpetual SDK",
+  "author": "massun onibakuchi",
+  "description": "Perpetual V2 SDK",
   "license": "MIT",
   "repository": {
     "type": "git",

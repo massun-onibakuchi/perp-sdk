@@ -11,6 +11,9 @@ const config: HardhatUserConfig = {
       url: process.env.ROPSTEN_URL || '',
     },
   },
+  typechain: {
+    outDir: 'src/abi/types'
+  }
 }
 
 export default config

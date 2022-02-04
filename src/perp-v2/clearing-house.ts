@@ -1,9 +1,9 @@
 import { ethers, Signer, Overrides } from 'ethers'
 import { PerpSDKConfig } from '../types'
-import { Base } from '../base'
+import { Base } from '../lib/base'
 import { Token } from '../lib/token'
 import { USDC_ADDRESSES } from '../constants'
-import type { IClearingHouse } from '../../typechain-types'
+import type { IClearingHouse } from '../abi/types'
 
 export class ClearingHouse extends Base {
   contract: IClearingHouse

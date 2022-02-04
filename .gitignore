@@ -23,6 +23,7 @@ coverage.json
 
 # typechain/factories
 typechain-types/factories
+src/abi/types/factories
 
 #Hardhat files
 cache

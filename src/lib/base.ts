@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { ethers, Signer } from 'ethers'
-import { ChainId, NETWORKS } from './constants'
-import type { PerpSDKConfig, Provider } from './types'
+import { ChainId, NETWORKS } from '../constants'
+import type { PerpSDKConfig, Provider } from '../types'
 
 export abstract class Base {
   provider: Provider

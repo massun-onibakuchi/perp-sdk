@@ -338,7 +338,8 @@ export type FundingPaymentSettledEvent = TypedEvent<
   { trader: string; baseToken: string; fundingPayment: BigNumber }
 >;
 
-export type FundingPaymentSettledEventFilter = TypedEventFilter<FundingPaymentSettledEvent>;
+export type FundingPaymentSettledEventFilter =
+  TypedEventFilter<FundingPaymentSettledEvent>;
 
 export type LiquidityChangedEvent = TypedEvent<
   [
@@ -365,7 +366,8 @@ export type LiquidityChangedEvent = TypedEvent<
   }
 >;
 
-export type LiquidityChangedEventFilter = TypedEventFilter<LiquidityChangedEvent>;
+export type LiquidityChangedEventFilter =
+  TypedEventFilter<LiquidityChangedEvent>;
 
 export type PositionChangedEvent = TypedEvent<
   [
@@ -404,21 +406,24 @@ export type PositionLiquidatedEvent = TypedEvent<
   }
 >;
 
-export type PositionLiquidatedEventFilter = TypedEventFilter<PositionLiquidatedEvent>;
+export type PositionLiquidatedEventFilter =
+  TypedEventFilter<PositionLiquidatedEvent>;
 
 export type ReferredPositionChangedEvent = TypedEvent<
   [string],
   { referralCode: string }
 >;
 
-export type ReferredPositionChangedEventFilter = TypedEventFilter<ReferredPositionChangedEvent>;
+export type ReferredPositionChangedEventFilter =
+  TypedEventFilter<ReferredPositionChangedEvent>;
 
 export type TrustedForwarderChangedEvent = TypedEvent<
   [string],
   { forwarder: string }
 >;
 
-export type TrustedForwarderChangedEventFilter = TypedEventFilter<TrustedForwarderChangedEvent>;
+export type TrustedForwarderChangedEventFilter =
+  TypedEventFilter<TrustedForwarderChangedEvent>;
 
 export interface IClearingHouse extends BaseContract {
   contractName: "IClearingHouse";
