@@ -19,4 +19,4 @@ async function main() {
   console.log('markets :>> ', markets)
 }
 
-// main().catch(error => console.error(error))
+main().catch(error => console.error(error))
