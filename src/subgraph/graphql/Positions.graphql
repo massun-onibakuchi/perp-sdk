@@ -12,7 +12,14 @@ query Positions(
   $where: Position_filter
   $block: Block_height
 ) {
-  positions(skip: $skip, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: $where, block: $block) {
+  positions(
+    skip: $skip
+    first: $first
+    orderBy: $orderBy
+    orderDirection: $orderDirection
+    where: $where
+    block: $block
+  ) {
     ...SubgraphPosition
   }
 }
