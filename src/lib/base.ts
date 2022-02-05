@@ -11,7 +11,7 @@ export abstract class Base {
   public readonly chainId: ChainId
   public readonly isToken: boolean = false
 
-  constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
+  constructor({ provider, privateKey, chainId }: PerpSDKConfig, address?: string) {
     if (provider) {
       this.provider = provider
     }
