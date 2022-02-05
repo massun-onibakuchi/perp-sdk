@@ -1,9 +1,10 @@
+import type { BytesLike } from '@ethersproject/bytes'
 import type { Provider } from '@ethersproject/providers'
-import { ChainId } from './constants'
+import type { ChainId } from './constants'
 
 type PerpSDKConfig = {
-  provider: Provider
-  privateKey?: any
+  provider?: Provider
+  privateKey?: BytesLike
   chainId?: ChainId
 }
 
