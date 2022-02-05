@@ -10,18 +10,15 @@ export class AccountBalance extends Base {
     super({ provider, privateKey, chainId })
 
     const metadata = this.loadMetadata('AccountBalance')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi'], provider).connect(
-      this.signer || provider
-    ) as IAccountBalance
-  }
+    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IAccountBalance
 
-  connect(signer: string | ethers.providers.Provider | ethers.Signer) {
-    this.contract.connect(signer)
-    return this
+    const signerOrProvider = this.signer || this.provider
+    if (signerOrProvider) {
+      this.contract = this.contract.connect(signerOrProvider)
+    }
   }
 
   async getAccountInfo(trader: string, baseToken: string) {
-    //@todo Token instanceを返す
     return this.contract.getAccountInfo(trader, baseToken)
   }
 

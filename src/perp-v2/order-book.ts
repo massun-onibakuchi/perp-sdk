@@ -10,27 +10,30 @@ export class OrderBook extends Base {
     super({ provider, privateKey, chainId })
 
     const metadata = this.loadMetadata('OrderBook')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']).connect(
-      this.signer || provider
-    ) as IOrderBook
+    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IOrderBook
+
+    const signerOrProvider = this.signer || provider
+    if (signerOrProvider) {
+      this.contract = this.contract.connect(signerOrProvider)
+    }
   }
 
-  connect(signer: string | ethers.providers.Provider | ethers.Signer) {
-    this.contract.connect(signer)
-    return this
-  }
   async getExchange() {
     return this.contract.getExchange()
   }
+
   async getOpenOrderIds(trader: string, baseToken: string) {
     return this.contract.getOpenOrderIds(trader, baseToken)
   }
+
   async getOpenOrderById(orderId: BytesLike) {
     return this.contract.getOpenOrderById(orderId)
   }
+
   async getOpenOrder(trader: string, baseToken: string, lowerTick: BigNumberish, upperTick: BigNumberish) {
     return this.contract.getOpenOrder(trader, baseToken, lowerTick, upperTick)
   }
+
   async hasOrder(trader: string, tokens: string[]) {
     return this.contract.hasOrder(trader, tokens)
   }

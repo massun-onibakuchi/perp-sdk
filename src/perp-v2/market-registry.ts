@@ -10,18 +10,15 @@ export class MarketRegistry extends Base {
     super({ provider, privateKey, chainId })
 
     const metadata = this.loadMetadata('MarketRegistry')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi'], provider).connect(
-      this.signer || provider
-    ) as IMarketRegistry
-  }
+    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IMarketRegistry
 
-  connect(signer: string | ethers.providers.Provider | ethers.Signer) {
-    this.contract.connect(signer)
-    return this
+    const signerOrProvider = this.signer || provider
+    if (signerOrProvider) {
+      this.contract = this.contract.connect(signerOrProvider)
+    }
   }
 
   async getQuoteToken() {
-    //@todo Token instanceを返す
     return this.contract.getQuoteToken()
   }
 
@@ -30,7 +27,6 @@ export class MarketRegistry extends Base {
   }
 
   async getMaxOrdersPerMarket() {
-    //@todo Token instanceを返す
     return this.contract.getMaxOrdersPerMarket()
   }
 

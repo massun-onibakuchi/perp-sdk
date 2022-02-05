@@ -1,4 +1,4 @@
-import { BigNumberish, ethers, Signer } from 'ethers'
+import { BigNumberish, ethers, Overrides } from 'ethers'
 import { Base } from '../lib/base'
 import type { IVault } from '../abi/types'
 import { PerpSDKConfig } from '../types'
@@ -10,28 +10,36 @@ export class Vault extends Base {
     super({ provider, privateKey, chainId })
 
     const metadata = this.loadMetadata('Vault')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']).connect(this.signer || provider) as IVault
-  }
+    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IVault
 
-  connect(signer: string | ethers.providers.Provider | ethers.Signer) {
-    this.contract.connect(signer)
-    return this
+    const signerOrProvider = this.signer || provider
+    if (signerOrProvider) {
+      this.contract = this.contract.connect(signerOrProvider)
+    }
   }
 
   async decimals() {
     return this.contract.decimals()
   }
 
-  async deposit(token: string, amountX10_D: BigNumberish) {
-    return (await this.contract.deposit(token, amountX10_D)).wait()
+  async deposit(
+    token: string,
+    amountX10_D: BigNumberish,
+    overrides?: Overrides & {
+      from?: string | Promise<string>
+    }
+  ) {
+    return (await this.contract.deposit(token, amountX10_D, overrides)).wait()
   }
 
   async getAccountBalance() {
     return this.contract.getAccountBalance()
   }
+
   async getBalance(account: string) {
     return this.contract.getBalance(account)
   }
+
   async getClearingHouse() {
     return this.contract.getClearingHouse()
   }
@@ -39,6 +47,7 @@ export class Vault extends Base {
   async getClearingHouseConfig() {
     return this.contract.getClearingHouseConfig()
   }
+
   async getExchange() {
     return this.contract.getExchange()
   }
@@ -46,6 +55,7 @@ export class Vault extends Base {
   async getFreeCollateral(trader: string) {
     return this.contract.getFreeCollateral(trader)
   }
+
   async getFreeCollateralByRatio(trader: string, ratio: BigNumberish) {
     return this.contract.getFreeCollateralByRatio(trader, ratio)
   }
@@ -53,13 +63,22 @@ export class Vault extends Base {
   async getInsuranceFund() {
     return this.contract.getInsuranceFund()
   }
+
   async getSettlementToken() {
     return this.contract.getSettlementToken()
   }
+
   async getTotalDebt() {
     return this.contract.getTotalDebt()
   }
-  async withdraw(token: string, amountX10_D: BigNumberish) {
-    return (await this.contract.withdraw(token, amountX10_D)).wait()
+
+  async withdraw(
+    token: string,
+    amountX10_D: BigNumberish,
+    overrides?: Overrides & {
+      from?: string | Promise<string>
+    }
+  ) {
+    return (await this.contract.withdraw(token, amountX10_D, overrides)).wait()
   }
 }

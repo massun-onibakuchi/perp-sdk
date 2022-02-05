@@ -1,24 +1,21 @@
-import { ethers, Signer, Overrides } from 'ethers'
+import { ethers, Overrides } from 'ethers'
 import { PerpSDKConfig } from '../types'
 import { Base } from '../lib/base'
-import { Token } from '../lib/token'
-import { USDC_ADDRESSES } from '../constants'
 import type { IClearingHouse } from '../abi/types'
 
 export class ClearingHouse extends Base {
   contract: IClearingHouse
-  usdc: Token
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
     const metadata = this.loadMetadata('ClearingHouse')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']).connect(
-      this.signer || provider
-    ) as IClearingHouse
+    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IClearingHouse
 
-    // @ts-ignore
-    this.usdc = new Token(USDC_ADDRESSES[this.chainId], 6, 'USDC', 10, { provider, privateKey, chainId }, 'ERC20')
+    const signerOrProvider = this.signer || provider
+    if (signerOrProvider) {
+      this.contract = this.contract.connect(signerOrProvider)
+    }
   }
 
   connect(signer: string | ethers.providers.Provider | ethers.Signer) {
@@ -32,12 +29,14 @@ export class ClearingHouse extends Base {
   ) {
     return this.contract.addLiquidity(params, overrides)
   }
+
   async removeLiquidity(
     params: IClearingHouse.RemoveLiquidityParamsStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
   ) {
     return this.contract.removeLiquidity(params, overrides)
   }
+
   async settleAllFunding(trader: string, overrides?: Overrides & { from?: string | Promise<string> }) {
     return (await this.contract.settleAllFunding(trader, overrides)).wait()
   }
@@ -48,6 +47,7 @@ export class ClearingHouse extends Base {
   ) {
     return (await this.contract.openPosition(params, overrides)).wait()
   }
+
   async closePosition(
     params: IClearingHouse.ClosePositionParamsStruct,
     overrides?: Overrides & { from?: string | Promise<string> }
@@ -58,6 +58,7 @@ export class ClearingHouse extends Base {
   async liquidate(trader: string, baseToken: string, overrides?: Overrides & { from?: string | Promise<string> }) {
     return (await this.contract['liquidate(address,address)'](trader, baseToken, overrides)).wait()
   }
+
   async cancelAllExcessOrders(
     maker: string,
     baseToken: string,
