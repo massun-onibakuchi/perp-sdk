@@ -1,26 +1,27 @@
 import fs from 'fs'
 import invariant from 'tiny-invariant'
-import { ethers, Signer } from 'ethers'
+import { ethers, Signer, Contract } from 'ethers'
 import { ChainId, NETWORKS } from '../constants'
 import type { PerpSDKConfig, Provider } from '../types'
 
 export abstract class Base {
-  provider: Provider | undefined
-  signer: Signer | undefined
-  chainId: ChainId
-  contract: any
-  isToken: boolean = false
+  public provider: Provider | undefined
+  public signer: Signer | undefined
+  public contract!: Contract
+  public readonly chainId: ChainId
+  public readonly isToken: boolean = false
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
-    invariant(Number.isSafeInteger(chainId), 'CHAIN_ID')
-
     if (provider) {
       this.provider = provider
     }
 
-    if (!chainId) {
+    if (chainId) {
+      invariant(Number.isSafeInteger(chainId), 'CHAIN_ID')
+    } else {
       chainId = 10
     }
+
     this.chainId = chainId
 
     if (privateKey) {

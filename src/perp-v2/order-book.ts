@@ -4,7 +4,7 @@ import { Base } from '../lib/base'
 import type { IOrderBook } from '../abi/types'
 
 export class OrderBook extends Base {
-  contract: IOrderBook
+  public contract: IOrderBook
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })

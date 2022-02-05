@@ -4,7 +4,7 @@ import { Base } from '../lib/base'
 import type { IClearingHouse } from '../abi/types'
 
 export class ClearingHouse extends Base {
-  contract: IClearingHouse
+  public contract: IClearingHouse
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })

@@ -4,7 +4,7 @@ import { Base } from '../lib/base'
 import type { IAccountBalance } from '../abi/types'
 
 export class AccountBalance extends Base {
-  contract: IAccountBalance
+  public contract: IAccountBalance
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })

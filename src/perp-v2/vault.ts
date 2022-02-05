@@ -4,7 +4,7 @@ import type { IVault } from '../abi/types'
 import { PerpSDKConfig } from '../types'
 
 export class Vault extends Base {
-  contract: IVault
+  public contract: IVault
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })

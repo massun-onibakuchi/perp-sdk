@@ -8,20 +8,20 @@ export class Token extends Base {
   /**
    * The contract address on the chain on which this token lives
    */
-  address: string
+  public readonly address: string
 
-  tokenType: TokenType = 'ERC20'
+  public readonly tokenType: TokenType = 'ERC20'
 
-  decimals: number
+  public readonly decimals: number
 
   /**
    * The symbol of the currency, i.e. a short textual non-unique identifier
    */
-  symbol?: string
+  public readonly symbol: string
 
-  isToken: boolean = true
+  public readonly isToken: boolean = true
 
-  contract: IERC20
+  public contract: IERC20
 
   constructor(address: string, decimals: number, symbol: string, { provider, chainId, privateKey }: PerpSDKConfig) {
     super({
@@ -30,8 +30,7 @@ export class Token extends Base {
       privateKey,
     })
     invariant(decimals >= 0 && decimals < 255 && Number.isInteger(decimals), 'DECIMALS')
-    invariant(decimals >= 0 && decimals < 255 && Number.isInteger(decimals), 'DECIMALS')
-    invariant(this.symbol && this.symbol.toUpperCase() === 'ETH' ? 'ETH' : 'ERC20')
+    invariant(symbol.toUpperCase() != 'ETH', 'ERC20 TOKEN')
 
     this.address = address
     this.decimals = decimals

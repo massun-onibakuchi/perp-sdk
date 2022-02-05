@@ -4,7 +4,7 @@ import type { IMarketRegistry } from '../abi/types'
 import { PerpSDKConfig } from '../types'
 
 export class MarketRegistry extends Base {
-  contract: IMarketRegistry
+  public contract: IMarketRegistry
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
