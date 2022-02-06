@@ -1,4 +1,8 @@
 node_modules
+build
+
+**/examples
+**/generated
+
 artifacts
 cache
-coverage

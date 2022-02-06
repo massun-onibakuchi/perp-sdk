@@ -11,7 +11,7 @@ export abstract class Base {
   public readonly chainId: ChainId
   public readonly isToken: boolean = false
 
-  constructor({ provider, privateKey, chainId }: PerpSDKConfig, address?: string) {
+  constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     if (provider) {
       this.provider = provider
     }
@@ -30,15 +30,11 @@ export abstract class Base {
   }
 
   protected loadMetadata(contractName: string, overridesDirectory?: string) {
-    try {
-      return JSON.parse(
-        fs.readFileSync(`./src/abi/${overridesDirectory || NETWORKS[this.chainId]}/${contractName}.json`, {
-          encoding: 'utf8',
-        })
-      )
-    } catch (error) {
-      throw error
-    }
+    return JSON.parse(
+      fs.readFileSync(`./src/abi/${overridesDirectory || NETWORKS[this.chainId]}/${contractName}.json`, {
+        encoding: 'utf8',
+      })
+    )
   }
 
   connect(signer: string | ethers.providers.Provider | ethers.Signer) {
