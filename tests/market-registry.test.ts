@@ -1,13 +1,12 @@
 import * as dotenv from 'dotenv'
-import { ethers, utils } from 'ethers'
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { isAddress } from '@ethersproject/address'
 import { MarketRegistry } from '../src/index'
 
 dotenv.config()
-
 jest.setTimeout(30 * 1000)
 
-const isAddress = utils.isAddress
-const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL)
+const provider = new JsonRpcProvider(process.env.PROVIDER_URL)
 
 // baseTokens
 const vSOL = '0x151Bb01c79F4516c233948D69daE39869BCcB737'

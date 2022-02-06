@@ -1,6 +1,6 @@
-import { ethers, Overrides } from 'ethers'
-import { PerpSDKConfig } from '../types'
+import { Overrides, Contract } from '@ethersproject/contracts'
 import { Base } from '../lib/base'
+import type { PerpSDKConfig } from '../types'
 import type { IClearingHouse } from '../abi/types'
 import Artifact from '../abi/ClearingHouse.json'
 
@@ -10,17 +10,12 @@ export class ClearingHouse extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IClearingHouse
+    this.contract = new Contract(Artifact['address'], Artifact['abi'])  as IClearingHouse
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {
       this.contract = this.contract.connect(signerOrProvider)
     }
-  }
-
-  connect(signer: string | ethers.providers.Provider | ethers.Signer) {
-    this.contract.connect(signer)
-    return this
   }
 
   async addLiquidity(

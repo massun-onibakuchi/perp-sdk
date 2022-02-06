@@ -1,18 +1,18 @@
 import * as dotenv from 'dotenv'
-import { ethers, BigNumber, utils } from 'ethers'
-import { Vault, USDC_ADDRESSES } from '../src/index'
+import { BigNumber } from '@ethersproject/bignumber'
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { Wallet } from '@ethersproject/wallet'
+import { isAddress } from '@ethersproject/address'
+import { Vault, PERP_V2_NETWORK_CONFIG } from '../src/index'
 
 dotenv.config()
-
 jest.setTimeout(30 * 1000)
-
 const toBN = (v: number) => BigNumber.from(v)
-const isAddress = utils.isAddress
 
-const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL)
-const signer = ethers.Wallet.fromMnemonic(process.env.MNEMONIC!).connect(provider)
+const provider = new JsonRpcProvider(process.env.PROVIDER_URL)
+const signer = Wallet.fromMnemonic(process.env.MNEMONIC!).connect(provider)
 const trader = '0x8B4e846c90a2521F0D2733EaCb56760209EAd51A'
-const usdc = USDC_ADDRESSES[10] // optimism
+const usdc = PERP_V2_NETWORK_CONFIG[10]['addresses']['tokens']['usdc'] // optimism
 
 describe('Vault', () => {
   let vault: Vault

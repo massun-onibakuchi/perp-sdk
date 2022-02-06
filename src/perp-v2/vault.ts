@@ -1,7 +1,8 @@
-import { BigNumberish, ethers, Overrides } from 'ethers'
+import { Overrides, Contract } from '@ethersproject/contracts'
 import { Base } from '../lib/base'
+import type { BigNumberish } from '@ethersproject/bignumber'
 import type { IVault } from '../abi/types'
-import { PerpSDKConfig } from '../types'
+import type { PerpSDKConfig } from '../types'
 import Artifact from '../abi/Vault.json'
 
 export class Vault extends Base {
@@ -10,7 +11,7 @@ export class Vault extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IVault
+    this.contract = new Contract(Artifact['address'], Artifact['abi']) as IVault
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {

@@ -1,8 +1,9 @@
-import { BigNumberish, ethers, Overrides } from 'ethers'
+import { BigNumberish } from '@ethersproject/bignumber'
+import { Overrides, Contract } from '@ethersproject/contracts'
 import invariant from 'tiny-invariant'
-import { IERC20 } from '../abi/types'
 import { Base } from './base'
-import { PerpSDKConfig, TokenType } from '../types'
+import type { PerpSDKConfig, TokenType } from '../types'
+import type { IERC20 } from '../abi/types'
 import Artifact from '../abi/IERC20.json'
 
 export class Token extends Base {
@@ -37,7 +38,7 @@ export class Token extends Base {
     this.decimals = decimals
     this.symbol = symbol
 
-    this.contract = new ethers.Contract(address, Artifact['abi']) as IERC20
+    this.contract = new Contract(address, Artifact['abi'])  as IERC20
 
     const signerOrProvider = this.signer || this.provider
     if (signerOrProvider) {

@@ -1,15 +1,15 @@
 import * as dotenv from 'dotenv'
-import { ethers, BigNumber, utils } from 'ethers'
+import { BigNumber } from '@ethersproject/bignumber'
+import { JsonRpcProvider } from '@ethersproject/providers'
+import { isAddress } from '@ethersproject/address'
 import { AccountBalance } from '../src/index'
 
 dotenv.config()
-
 jest.setTimeout(30 * 1000)
 
 const toBN = (v: number) => BigNumber.from(v)
-const isAddress = utils.isAddress
 
-const provider = new ethers.providers.JsonRpcProvider(process.env.PROVIDER_URL)
+const provider = new JsonRpcProvider(process.env.PROVIDER_URL)
 const trader = '0xf8489bcef22d3282bb884b9e9cc708bb465c075e'
 
 // baseTokens

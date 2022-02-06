@@ -1,6 +1,8 @@
-import { BigNumberish, BytesLike, ethers } from 'ethers'
-import { PerpSDKConfig } from '../types'
+import { Contract } from '@ethersproject/contracts'
 import { Base } from '../lib/base'
+import type { BigNumberish } from '@ethersproject/bignumber'
+import type { BytesLike } from '@ethersproject/bytes'
+import type { PerpSDKConfig } from '../types'
 import type { IOrderBook } from '../abi/types'
 import Artifact from '../abi/OrderBook.json'
 
@@ -10,7 +12,7 @@ export class OrderBook extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IOrderBook
+    this.contract = new Contract(Artifact['address'], Artifact['abi'])  as IOrderBook
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {
