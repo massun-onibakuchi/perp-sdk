@@ -2,9 +2,16 @@
 
 🛠 An JavaScript SDK for interacting with the Perpetual V2
 
+### Features
+
+- 🔥Interacting with Perpetual Protocol V2 contracts
+- ✨Subgraph Queries
+
 ---
 
-### To use Perpetual V2 SDK :
+## 💁Getting Started
+
+### ✨To use Perpetual V2 SDK :
 
 Install the lib using npm or yarn
 
@@ -14,7 +21,7 @@ yarn add perp-v2-sdk
 
 ---
 
-### Interacting with contracts
+## ✨Interacting with contracts
 
 ES6 or TypeScript
 
@@ -28,20 +35,20 @@ const marketRegistry = new MarketRegistry({ provider })
 const valut = new Vault({ provider })
 ```
 
-##### To get account value of a trader
+#### To get account value of a trader
 
 ```javascript
 const trader = '0x8B4e846c90a2521F0D2733EaCb56760209EAd51A'
 const value = await clearingHouse.getAccountValue(trader)
 ```
 
-##### To open a position
+#### To open a position
 
 ```javascript
 const reciept = await clearingHouse.openPosition(params)
 ```
 
-##### To get total position size
+#### To get total position size
 
 ```javascript
 const trader = '0x8B4e846c90a2521F0D2733EaCb56760209EAd51A'
@@ -51,10 +58,10 @@ const accountBalance = new AccountBalance({
   provider
   privateKey: process.env.PRIVATE_KEY
 })
-const reciept = await accountBalance.getTotalPositionSize(trader, vETH)
+const size = await accountBalance.getTotalPositionSize(trader, vETH)
 ```
 
-##### To approve vault to use USDC
+#### To approve vault to use USDC and deposit to vault
 
 ```javascript
 import { ChainId, USDC } from 'perp-v2-sdk'
@@ -62,12 +69,13 @@ import { ChainId, USDC } from 'perp-v2-sdk'
 const vaultAddress = vault.contract.address
 const amount = '1000000000'
 const usdc = USDC[ChainId.Optimism]
-const reciept = await usdc.connect(signer).approve(vaultAddress, amount)
+await usdc.connect(signer).approve(vaultAddress, amount)
+const reciept = await vault.deposit(usdc.address, amount)
 ```
 
 ---
 
-## Subgraph Queries
+## ✨Subgraph Queries
 
 ```typescript
 import { createSubgraphClient } from 'perp-v2-sdk'
@@ -75,7 +83,7 @@ import { createSubgraphClient } from 'perp-v2-sdk'
 const client = createSubgraphClient(process.env.SUBGRAPH_URL)
 ```
 
-##### To list markets
+#### To list markets
 
 ```typescript
 import { Market_OrderBy, OrderDirection } from 'perp-v2-sdk'
@@ -88,7 +96,7 @@ const { markets } = await client.Markets({
 })
 ```
 
-##### To list positions
+#### To list positions
 
 ```typescript
 import { Position_OrderBy, OrderDirection } from 'perp-v2-sdk'
@@ -102,20 +110,16 @@ const { positions } = await client.Positions({
 })
 ```
 
+More examples are [here](./src/subgraph/examples/)
+
 ---
 
-### To run the example locally:
+## 🔧Contributing
 
-Created an .env file with these 2 env variables:
+Created an .env file with a env variable:
 
 ```bash
 PROVIDER_URL=YOUR_PROVIDRER_URL_OR_ALCHEMY_URL
-```
-
-run
-
-```bash
-yarn install perp-v2-sdk
 ```
 
 For local developement you can run
@@ -130,6 +134,16 @@ For production build:
 yarn build
 ```
 
-Which will generate a production build on "dist" folder
+Which will generate a production build on "dist" folder.
+
+To run tests type:
+
+```bash
+yarn test
+```
 
 ## Disclaimer
+
+This is experimental software and is provided on an "as is" and "as available" basis.
+
+We do not give any warranties and will not be liable for any loss incurred through any use of this codebase.
