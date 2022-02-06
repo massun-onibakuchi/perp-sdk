@@ -27,6 +27,8 @@ typechain-types/factories
 src/abi/types/factories
 hardhat.d.ts
 
+src/subgraph/generated
+
 #Hardhat files
 cache
 artifacts
