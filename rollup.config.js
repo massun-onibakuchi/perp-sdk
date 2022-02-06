@@ -15,7 +15,7 @@ export default [
         input: 'src/index.ts',
         output: [
             {
-                name: 'balancer-js',
+                name: 'perp-v2-js',
                 file: pkg.browser,
                 format: 'umd',
                 sourcemap: true,

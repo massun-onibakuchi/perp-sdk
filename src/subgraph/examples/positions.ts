@@ -12,7 +12,7 @@ async function main() {
   // List positions
   const { positions } = await client.Positions({
     first: 2,
-    where: { positionSize_gt: '1000' },
+    where: { positionSize_gt: '1000',/*  trader: '0x000000' */ },
     orderBy: Position_OrderBy.PositionSize,
     orderDirection: OrderDirection.Desc,
   })

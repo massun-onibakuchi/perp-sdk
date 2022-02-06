@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import { createSubgraphClient } from '../subgraph'
-import { Market_OrderBy, OrderDirection } from '../generated/perp-v2-subgraph-types'
+import { Market_OrderBy, OrderDirection, SubgraphMarketFragment } from '../generated/perp-v2-subgraph-types'
 
 dotenv.config()
 
@@ -17,6 +17,8 @@ async function main() {
     orderDirection: OrderDirection.Desc,
   })
   console.log('markets :>> ', markets)
+
+  const market: SubgraphMarketFragment = markets[0];
 }
 
 main().catch(error => console.error(error))
