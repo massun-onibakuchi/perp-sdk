@@ -19,7 +19,7 @@ const { openOrders } = await client.OpenOrders({
 })
 ```
 
-[Examples](./examples/subgraph-queries.ts)
+[Examples](./examples/markets.ts)
 
 ## Adding new queries
 
