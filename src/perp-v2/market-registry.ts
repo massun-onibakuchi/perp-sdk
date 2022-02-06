@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { Base } from '../lib/base'
 import type { IMarketRegistry } from '../abi/types'
 import { PerpSDKConfig } from '../types'
+import Artifact from '../abi/MarketRegistry.json'
 
 export class MarketRegistry extends Base {
   public contract: IMarketRegistry
@@ -9,8 +10,7 @@ export class MarketRegistry extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    const metadata = this.loadMetadata('MarketRegistry')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IMarketRegistry
+    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IMarketRegistry
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {

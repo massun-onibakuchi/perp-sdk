@@ -2,6 +2,7 @@ import { ethers, Overrides } from 'ethers'
 import { PerpSDKConfig } from '../types'
 import { Base } from '../lib/base'
 import type { IClearingHouse } from '../abi/types'
+import Artifact from '../abi/ClearingHouse.json'
 
 export class ClearingHouse extends Base {
   public contract: IClearingHouse
@@ -9,8 +10,7 @@ export class ClearingHouse extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    const metadata = this.loadMetadata('ClearingHouse')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IClearingHouse
+    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IClearingHouse
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {

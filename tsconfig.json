@@ -8,9 +8,18 @@
     "noImplicitReturns": true,
     "strict": true,
     "resolveJsonModule": true,
-    "lib": ["es2017", "es7", "es6", "dom"],
     "outDir": "./build"
   },
-  "include": ["src/*", "./src/abi/*.json"],
-  "exclude": ["src/abi/types/factories/*",]
+  "lib": [
+    "es2017",
+    "es7",
+    "es6"
+  ],
+  "include": [
+    "src/*",
+    "src/abi/**/*.json"
+  ],
+  "exclude": [
+    "src/abi/types/factories/*",
+  ]
 }

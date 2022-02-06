@@ -1,7 +1,6 @@
-import fs from 'fs'
 import invariant from 'tiny-invariant'
 import { ethers, Signer, Contract } from 'ethers'
-import { ChainId, NETWORKS } from '../constants'
+import { ChainId } from '../constants'
 import type { PerpSDKConfig, Provider } from '../types'
 
 export abstract class Base {
@@ -27,14 +26,6 @@ export abstract class Base {
     if (privateKey) {
       this.signer = new ethers.Wallet(privateKey)
     }
-  }
-
-  protected loadMetadata(contractName: string, overridesDirectory?: string) {
-    return JSON.parse(
-      fs.readFileSync(`./src/abi/${overridesDirectory || NETWORKS[this.chainId]}/${contractName}.json`, {
-        encoding: 'utf8',
-      })
-    )
   }
 
   connect(signer: string | ethers.providers.Provider | ethers.Signer) {

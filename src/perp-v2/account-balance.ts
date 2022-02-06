@@ -2,6 +2,7 @@ import { ethers } from 'ethers'
 import { PerpSDKConfig } from '../types'
 import { Base } from '../lib/base'
 import type { IAccountBalance } from '../abi/types'
+import Artifact from '../abi/AccountBalance.json'
 
 export class AccountBalance extends Base {
   public contract: IAccountBalance
@@ -9,8 +10,7 @@ export class AccountBalance extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    const metadata = this.loadMetadata('AccountBalance')
-    this.contract = new ethers.Contract(metadata['address'], metadata['abi']) as IAccountBalance
+    this.contract = new ethers.Contract(Artifact['address'], Artifact['abi']) as IAccountBalance
 
     const signerOrProvider = this.signer || this.provider
     if (signerOrProvider) {

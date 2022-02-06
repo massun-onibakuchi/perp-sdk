@@ -19,6 +19,11 @@ export interface PerpV2NetworkConfig {
       clearingHouse: string
       orderBook: string
       accountBalance: string
+      exchange: string
+      insuranceFund: string
+      uniswapV3Factory: string
+      clearingHouseConfig: string
+      quoteToken: string
       [contract: string]: string
     }
     tokens: {

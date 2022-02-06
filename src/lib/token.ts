@@ -3,6 +3,7 @@ import invariant from 'tiny-invariant'
 import { IERC20 } from '../abi/types'
 import { Base } from './base'
 import { PerpSDKConfig, TokenType } from '../types'
+import Artifact from '../abi/IERC20.json'
 
 export class Token extends Base {
   /**
@@ -36,8 +37,7 @@ export class Token extends Base {
     this.decimals = decimals
     this.symbol = symbol
 
-    const metadata = this.loadMetadata('IERC20', 'common')
-    this.contract = new ethers.Contract(address, metadata['abi']) as IERC20
+    this.contract = new ethers.Contract(address, Artifact['abi']) as IERC20
 
     const signerOrProvider = this.signer || this.provider
     if (signerOrProvider) {
