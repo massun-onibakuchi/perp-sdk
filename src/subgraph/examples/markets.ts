@@ -18,7 +18,7 @@ async function main() {
   })
   console.log('markets :>> ', markets)
 
-  const market: SubgraphMarketFragment = markets[0];
+  const market: SubgraphMarketFragment = markets[0]
 }
 
 main().catch(error => console.error(error))

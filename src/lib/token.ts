@@ -38,7 +38,7 @@ export class Token extends Base {
     this.decimals = decimals
     this.symbol = symbol
 
-    this.contract = new Contract(address, Artifact['abi'])  as IERC20
+    this.contract = new Contract(address, Artifact['abi']) as IERC20
 
     const signerOrProvider = this.signer || this.provider
     if (signerOrProvider) {

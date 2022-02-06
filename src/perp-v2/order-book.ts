@@ -12,7 +12,7 @@ export class OrderBook extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new Contract(Artifact['address'], Artifact['abi'])  as IOrderBook
+    this.contract = new Contract(Artifact['address'], Artifact['abi']) as IOrderBook
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {

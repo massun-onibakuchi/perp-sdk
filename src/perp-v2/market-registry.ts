@@ -10,7 +10,7 @@ export class MarketRegistry extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new Contract(Artifact['address'], Artifact['abi'])  as IMarketRegistry
+    this.contract = new Contract(Artifact['address'], Artifact['abi']) as IMarketRegistry
 
     const signerOrProvider = this.signer || provider
     if (signerOrProvider) {

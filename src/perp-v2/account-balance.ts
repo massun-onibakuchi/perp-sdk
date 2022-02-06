@@ -10,7 +10,7 @@ export class AccountBalance extends Base {
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
     super({ provider, privateKey, chainId })
 
-    this.contract = new Contract(Artifact['address'], Artifact['abi'])  as IAccountBalance
+    this.contract = new Contract(Artifact['address'], Artifact['abi']) as IAccountBalance
 
     const signerOrProvider = this.signer || this.provider
     if (signerOrProvider) {
