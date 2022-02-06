@@ -2,4 +2,7 @@ hardhat.config.ts
 scripts
 test
 contracts
+artifacts
+cache
 examples
+src/abi/factories/
