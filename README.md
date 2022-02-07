@@ -30,7 +30,7 @@ import { ethers } from 'ethers'
 import { ClearingHouse, MarketRegistry, Vault } from 'perp-v2-sdk'
 
 const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_API_KEY)
-const clearingHouse = new ClearingHouse({ provider })
+const clearingHouse = new ClearingHouse({ provider, privateKey: process.env.PRIVATE_KEY })
 const marketRegistry = new MarketRegistry({ provider })
 const valut = new Vault({ provider })
 ```
@@ -68,7 +68,7 @@ import { ChainId, USDC } from 'perp-v2-sdk'
 
 const vaultAddress = vault.contract.address
 const amount = '1000000000'
-const usdc = new USDC({ provider, privateKey: process.env.PRIVATE_KEY })
+const usdc = new USDC({ provider, privateKey: process.env.PRIVATE_KEY, chainId: 10 })
 await usdc.approve(vaultAddress, amount)
 const reciept = await vault.deposit(usdc.address, amount)
 ```
@@ -117,9 +117,10 @@ More examples are [here](./src/subgraph/examples/)
 ## 🔧Contributing
 
 Created an .env file with a env variable:
+You can get one from provider such Infura or Alchemy.
 
 ```bash
-ALCHEMY_API_KEY=YOUR_PROVIDRER_URL_OR_ALCHEMY_URL
+PROVIDER_URL=YOUR_PROVIDRER_URL
 ```
 
 For local developement you can run
