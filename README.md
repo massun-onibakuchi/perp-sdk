@@ -1,6 +1,8 @@
 # Perpetual Protocol V2 SDK
 
-🛠 An JavaScript SDK for interacting with the Perpetual V2
+🛠 An JavaScript SDK for interacting with the Perpetual Protocol V2
+
+[Perpetual Protocol](https://perp.com/) is an on-chain perpetual futures DEX with deep liquidity and builder-ready composability.
 
 ### Features
 
@@ -29,7 +31,7 @@ ES6 or TypeScript
 import { ethers } from 'ethers'
 import { ClearingHouse, MarketRegistry, Vault } from 'perp-v2-sdk'
 
-const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_API_KEY)
+const provider = new ethers.providers.JsonRpcProvider(process.env.ALCHEMY_API_KEY)
 const clearingHouse = new ClearingHouse({ provider, privateKey: process.env.PRIVATE_KEY })
 const marketRegistry = new MarketRegistry({ provider })
 const valut = new Vault({ provider })
@@ -68,7 +70,7 @@ import { ChainId, USDC } from 'perp-v2-sdk'
 
 const vaultAddress = vault.contract.address
 const amount = '1000000000'
-const usdc = new USDC({ provider, privateKey: process.env.PRIVATE_KEY, chainId: 10 })
+const usdc = new USDC({ provider, privateKey: process.env.PRIVATE_KEY, chainId: ChainId.Optimism })
 await usdc.approve(vaultAddress, amount)
 const reciept = await vault.deposit(usdc.address, amount)
 ```
@@ -117,7 +119,7 @@ More examples are [here](./src/subgraph/examples/)
 ## 🔧Contributing
 
 Created an .env file with a env variable:
-You can get one from provider such Infura or Alchemy.
+You can get one from providers such as Infura or Alchemy.
 
 ```bash
 PROVIDER_URL=YOUR_PROVIDRER_URL

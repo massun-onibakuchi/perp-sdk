@@ -5,4 +5,4 @@ contracts
 artifacts
 cache
 examples
-src/abi/factories/
+src/abi/types/factories/**
