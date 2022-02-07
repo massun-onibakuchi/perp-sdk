@@ -29,8 +29,12 @@ export const PERP_V2_NETWORK_CONFIG: Record<ChainId, PerpV2NetworkConfig> = {
       },
       tokens: {
         usdc: '0x7F5c764cBc14f9669B88837ca1490cCa17c31607',
+        vUSD: '0xC84Da6c8ec7A57cD10B939E79eaF9d2D17834E04',
         vBTC: '0x26a74a9C08c94d176992312a1f3Fa69601BE4076',
         vETH: '0xccc170bdcdaA3c026302B19baef84Ea05C8aFB17',
+        vSOL: '0x151Bb01c79F4516c233948D69daE39869BCcB737',
+        vLUNA: '0xB24F50Dd9918934AB2228bE7A097411ca28F6C14',
+        vAVAX: '0x5FAa136Fc58B6136fFDAeAAC320076C4865c070F',
       },
     },
     urls: {

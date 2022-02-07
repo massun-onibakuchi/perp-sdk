@@ -29,7 +29,7 @@ ES6 or TypeScript
 import { ethers } from 'ethers'
 import { ClearingHouse, MarketRegistry, Vault } from 'perp-v2-sdk'
 
-const provider = new ethers.providers.JsonRpcProvider(PROVIDER_URL)
+const provider = new ethers.providers.JsonRpcProvider(ALCHEMY_API_KEY)
 const clearingHouse = new ClearingHouse({ provider })
 const marketRegistry = new MarketRegistry({ provider })
 const valut = new Vault({ provider })
@@ -68,8 +68,8 @@ import { ChainId, USDC } from 'perp-v2-sdk'
 
 const vaultAddress = vault.contract.address
 const amount = '1000000000'
-const usdc = USDC[ChainId.Optimism]
-await usdc.connect(signer).approve(vaultAddress, amount)
+const usdc = new USDC({ provider, privateKey: process.env.PRIVATE_KEY })
+await usdc.approve(vaultAddress, amount)
 const reciept = await vault.deposit(usdc.address, amount)
 ```
 
@@ -119,7 +119,7 @@ More examples are [here](./src/subgraph/examples/)
 Created an .env file with a env variable:
 
 ```bash
-PROVIDER_URL=YOUR_PROVIDRER_URL_OR_ALCHEMY_URL
+ALCHEMY_API_KEY=YOUR_PROVIDRER_URL_OR_ALCHEMY_URL
 ```
 
 For local developement you can run

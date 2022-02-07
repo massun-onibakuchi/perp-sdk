@@ -14,8 +14,6 @@ const trader = '0xf8489bcef22d3282bb884b9e9cc708bb465c075e'
 
 // baseTokens
 const vSOL = '0x151Bb01c79F4516c233948D69daE39869BCcB737'
-const vLUNA = '0xB24F50Dd9918934AB2228bE7A097411ca28F6C14'
-const vAVAX = '0x5FAa136Fc58B6136fFDAeAAC320076C4865c070F'
 
 describe('AccountBalance', () => {
   let accountBalance: AccountBalance

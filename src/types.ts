@@ -3,7 +3,7 @@ import type { Provider } from '@ethersproject/providers'
 import type { ChainId } from './constants'
 
 type PerpSDKConfig = {
-  provider?: Provider
+  provider: Provider
   privateKey?: BytesLike
   chainId?: ChainId
 }

@@ -40,9 +40,11 @@ export class Token extends Base {
 
     this.contract = new Contract(address, Artifact['abi']) as IERC20
 
-    const signerOrProvider = this.signer || this.provider
-    if (signerOrProvider) {
-      this.contract = this.contract.connect(signerOrProvider)
+    const signer = this.signer
+    if (signer) {
+      this.contract = this.contract.connect(signer)
+    } else {
+      this.contract = this.contract.connect(provider)
     }
   }
 

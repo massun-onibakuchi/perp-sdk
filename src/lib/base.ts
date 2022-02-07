@@ -13,9 +13,8 @@ export abstract class Base {
   public readonly isToken: boolean = false
 
   constructor({ provider, privateKey, chainId }: PerpSDKConfig) {
-    if (provider) {
-      this.provider = provider
-    }
+    invariant(provider, 'PROVIDER_UNDEFINED')
+    this.provider = provider
 
     if (chainId) {
       invariant(Number.isSafeInteger(chainId), 'CHAIN_ID')
@@ -26,7 +25,7 @@ export abstract class Base {
     this.chainId = chainId
 
     if (privateKey) {
-      this.signer = new Wallet(privateKey)
+      this.signer = new Wallet(privateKey).connect(provider)
     }
   }
 

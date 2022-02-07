@@ -13,9 +13,11 @@ export class Vault extends Base {
 
     this.contract = new Contract(Artifact['address'], Artifact['abi']) as IVault
 
-    const signerOrProvider = this.signer || provider
-    if (signerOrProvider) {
-      this.contract = this.contract.connect(signerOrProvider)
+    const signer = this.signer
+    if (signer) {
+      this.contract = this.contract.connect(signer)
+    } else {
+      this.contract = this.contract.connect(provider)
     }
   }
 
