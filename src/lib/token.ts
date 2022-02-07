@@ -1,5 +1,5 @@
 import { BigNumberish } from '@ethersproject/bignumber'
-import { Overrides, Contract } from '@ethersproject/contracts'
+import { Contract } from '@ethersproject/contracts'
 import invariant from 'tiny-invariant'
 import { Base } from './base'
 import type { PerpSDKConfig, TokenType } from '../types'
@@ -48,21 +48,27 @@ export class Token extends Base {
     }
   }
 
-  async approve(spender: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }) {
-    return (await this.contract.approve(spender, amount, overrides)).wait()
+  async approve(
+    spender: string,
+    amount: BigNumberish /* overrides?: Overrides & { from?: string | Promise<string> } */
+  ) {
+    return (await this.contract.approve(spender, amount /* overrides */)).wait()
   }
 
-  async transfer(recipient: string, amount: BigNumberish, overrides?: Overrides & { from?: string | Promise<string> }) {
-    return (await this.contract.transfer(recipient, amount, overrides)).wait()
+  async transfer(
+    recipient: string,
+    amount: BigNumberish /* overrides?: Overrides & { from?: string | Promise<string> } */
+  ) {
+    return (await this.contract.transfer(recipient, amount /* overrides */)).wait()
   }
 
   async transferFrom(
     sender: string,
     recipient: string,
-    amount: BigNumberish,
-    overrides?: Overrides & { from?: string | Promise<string> }
+    amount: BigNumberish
+    /* overrides?: Overrides & { from?: string | Promise<string> } */
   ) {
-    return (await this.contract.transferFrom(sender, recipient, amount, overrides)).wait()
+    return (await this.contract.transferFrom(sender, recipient, amount /* overrides */)).wait()
   }
 
   async allowance(owner: string, spender: string) {

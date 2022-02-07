@@ -27,12 +27,12 @@ export class Vault extends Base {
 
   async deposit(
     token: string,
-    amountX10_D: BigNumberish,
-    overrides?: Overrides & {
-      from?: string | Promise<string>
-    }
+    amountX10_D: BigNumberish
+    /*  overrides?: Overrides & {
+       from?: string | Promise<string>
+     } */
   ) {
-    return (await this.contract.deposit(token, amountX10_D, overrides)).wait()
+    return (await this.contract.deposit(token, amountX10_D /* overrides */)).wait()
   }
 
   async getAccountBalance() {
@@ -77,11 +77,11 @@ export class Vault extends Base {
 
   async withdraw(
     token: string,
-    amountX10_D: BigNumberish,
-    overrides?: Overrides & {
-      from?: string | Promise<string>
-    }
+    amountX10_D: BigNumberish
+    /*  overrides?: Overrides & {
+       from?: string | Promise<string>
+     } */
   ) {
-    return (await this.contract.withdraw(token, amountX10_D, overrides)).wait()
+    return (await this.contract.withdraw(token, amountX10_D /* overrides */)).wait()
   }
 }
