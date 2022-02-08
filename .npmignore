@@ -6,3 +6,4 @@ artifacts
 cache
 examples
 src/abi/types/factories/**
+dist/abi/types/factories/**
